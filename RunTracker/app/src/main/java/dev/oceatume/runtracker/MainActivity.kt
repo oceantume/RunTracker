@@ -1,7 +1,6 @@
 package dev.oceatume.runtracker
 
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu
 import android.view.MenuItem
@@ -16,9 +15,9 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+            handleActionToggle()
         }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -34,6 +33,21 @@ class MainActivity : AppCompatActivity() {
         return when (item.itemId) {
             R.id.action_settings -> true
             else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private var running = false
+    private fun handleActionToggle() {
+        running = !running
+
+        if (running) {
+            fab.setImageResource(android.R.drawable.ic_media_pause)
+
+            // todo: start recording
+        } else {
+            fab.setImageResource(android.R.drawable.ic_media_play)
+
+            // todo: stop recording
         }
     }
 }
